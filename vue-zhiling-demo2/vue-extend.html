@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue.extend-扩展实例构造器</title>
+</head>
+<body>
+    <!-- 需求：要在博客页面多处显示作者的网名，并在网名上直接有链接地址。我们希望在html中只需要写<author></author>，这和自定义组件很像，但是他没有传递任何参数，只是个静态标签。 -->
+    <h1>vue.extend-扩展实例构造器</h1>
+    <hr>
+    <h3>扩展实例构造器挂载</h3>
+    <author></author>
+    <hr>
+    <h3>挂载到普通标签上</h3>
+    <div id="authorid"></div>
+
+    <script type="text/javascript">
+        // 自定义无参数标签
+        var authorExtend = Vue.extend({
+            template: "<p><a :href='authorUrl'>{{authorName}}</a></p>",
+            data: function () {
+                return {
+                    authorName: "JSPang",
+                    authorUrl: "http://www.jspang.com",
+                }
+            }
+        })
+
+        new authorExtend().$mount('author');
+
+        // 挂载到普通标签上
+        new authorExtend().$mount('#authorid');
+    </script>
+</body>
+</html>

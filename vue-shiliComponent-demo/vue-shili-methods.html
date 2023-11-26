@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examples Method Demo</title>
+</head>
+<body>
+    <!-- $mount方法是用来挂载我们的扩展的，我们先来复习一下扩展的写法。
+    这里我们作了jspang的扩展，然后用$mount的方法把jspang挂载到DOM上，我们也生成了一个Vue的实例 -->
+    <h1>Examples Method Demo</h1>
+    <hr>
+    <div id="app">
+    </div>
+    <p><button onclick="destroy()">卸载</button></p>
+    <p><button onclick="reload()">更新</button></p>
+    <p><button onclick="tick()">更改数据</button></p>
+
+    <script type="text/javascript">
+
+    var jspang = Vue.extend({
+        template:`<p>{{message}}</p>`,
+        data: function() {
+            return {
+                message: 'Hello ,I am JSPang!'
+            }
+        },
+        mounted: function() {
+            console.log('mounted 被创建')
+        },
+        destroyed: function() {
+            console.log('destroyed 销毁之后')
+        },
+        updated: function() {
+            console.log('updated 更新之后')
+        }
+    })
+
+    var vm = new jspang().$mount('#app')
+
+    // 销毁
+    function destroy(){
+        vm.$destroy();
+    }
+
+    // 更新
+    function reload() {
+        vm.$forceUpdate()
+    }
+
+    // 更改数据
+    function tick() {
+        vm.message = "update message info";
+        vm.$nextTick(function() {
+            console.log('message更新完后，我被调用了');
+        })
+
+
+    }
+
+
+    </script>
+    
+</body>
+</html>

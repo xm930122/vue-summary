@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slot content extend</title>
+</head>
+<body>
+    <h1>默认插槽用法</h1>
+    <hr>
+    <div id="app">
+        {{message}}
+        <my-component>
+            <p>默认插槽</p> 
+            <h3>这是默认插槽</h3> 
+        </my-component>
+    </div>
+    <script type="text/javascript">
+
+    var myComponent = {
+        template: 
+        `
+        <div>
+            <slot>默认插槽</slot>  
+        </div>
+        `
+    }
+
+    var app = new Vue({
+        el: '#app',
+        data:{
+            message: "Hello Vue slot"
+        },
+        components:{
+            "my-component": myComponent
+        }
+    })
+
+    </script>
+    
+</body>
+</html>

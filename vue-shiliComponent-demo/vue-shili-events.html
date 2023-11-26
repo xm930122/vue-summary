@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue events</title>
+</head>
+<body>
+    <!-- 例子：我们还是写一个点击按钮，持续加1的例子 -->
+    <h1>Vue实例事件</h1>
+    <hr>
+    <div id="app">
+        <p>{{count}}</p>
+        <p @click="add"><button>增加</button></p>
+    </div>
+    <p><button onclick="reduce()">减少</button></p>
+    <p><button onclick="reduceOnce()">减少一次</button></p>
+    <p><button onclick="off()">关闭</button></p>
+    
+
+    <script type="text/javascript">
+    
+    var app = new Vue({
+        el: '#app',
+        data: {
+            count:1
+        },
+        methods: {
+            add: function() {
+                this.count++
+            }
+        },
+    })
+
+    function reduce() {
+        app.$emit('reduce')
+
+    }
+
+    function reduceOnce() {
+        app.$emit('reduceOnce')
+    }
+
+    function off(){
+        app.$off('reduce');
+    }
+
+    app.$on('reduce', function() {
+        console.log('执行了reduce()');
+        this.count--;
+    })
+
+    app.$once('reduceOnce', function() {
+        console.log('只执行一次方法');
+        this.count--;
+    })
+
+    </script>
+    
+</body>
+</html>

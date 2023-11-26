@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue.directive自定义指令</title>
+</head>
+<body>
+    <!-- 案例：定义一个v-jspang的指令，作用就是让文字变成绿色。
+    在自定义指令前我们写一个小功能，在页面上有一个数字为10，数字的下面有一个按钮，我们每点击一次按钮后，数字加1. -->
+    <div id="app">
+        <div v-jspang="color">
+            {{num}}
+        </div>
+        <div v-panpan="fontSize">
+            {{num}}
+        </div>
+        <div>
+            <button @click="add">Add</button>
+            <button @click="decrease">decrease</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // el: 指令所绑定的元素，可以用来直接操作DOM。
+        // binding: 一个对象，包含指令的很多信息。
+        // vnode: Vue编译生成的虚拟节点。
+        Vue.directive('jspang', function(el,binding,vnode){
+            // el.style= `color:${binding.value}`
+            el.style.color= `${binding.value}`
+            // 'color:'+binding.value;
+        });
+
+        Vue.directive('panpan', function(el,binding,vnode){
+            el.style='font-size:'+binding.value;
+        });
+
+        var app=new Vue({
+            el:'#app',
+            data:{
+                num:10,
+                color:'green',
+                fontSize: '34px',
+            },
+            methods:{
+                add(){
+                    this.num++;
+                },
+                decrease() {
+                    this.num--
+                }
+            }
+        })
+    </script>
+    
+</body>
+</html>

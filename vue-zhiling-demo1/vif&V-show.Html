@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="../assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-if & v-show & v-else</title>
+</head>
+<body>
+    <h1>v-if 判断是否加载</h1>
+    <hr>
+    <div id="app">
+        <!-- v-if:判断是否加载DOM，可以减轻服务器压力，在需要时加载 -->
+        <div v-if="isLogin">v-if:你好：JSPang</div>
+        <div v-else>请登录后操作</div>
+        <!-- v-show:调整css display属性，可以使客户端操作更加流畅 -->
+        <div v-show="isLogin">v-show:你好：JSPang</div>
+    </div>
+
+    <script type="text/javascript">
+        var app=new Vue({
+            el:'#app',
+            data:{
+               isLogin:true
+            }
+        })
+    </script>
+
+    
+</body>
+</html>

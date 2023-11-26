@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-01案例</title>
+</head>
+<body>
+    <h1>component-1</h1>
+    <hr>
+    <div id="app">
+        <jspang></jspang>
+        <hr>
+        <panda></panda>
+    </div>
+
+    <script type="text/javascript">
+
+    // 组件注册的是一个标签，而指令注册的是已有标签里的一个属性。
+    Vue.component('jspang', {
+        template:`<div style="color:red;">全局化注册的jspang标签</div>`
+    })
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+
+        },
+        components:{
+            "panda": {
+                template:`
+                <div>
+                <div style="color:green;">局部注册的panda标签</div>
+                <h1>局部注册的panda标签</h1>
+                </div>
+                `
+            }
+        }
+    })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-03案例</title>
+</head>
+<body>
+    <h1>component-03案例</h1>
+    <hr>
+    <div id="app">
+      <jspang here="China" province="Sichuan" :country="country"></jspang>  
+    </div>
+    <script type="text/javascript">
+    var city = {
+        template:
+        `
+        <div>
+        <div>Sichuan of {{from}}</div>
+        <h1>Sichuan of {{fromCity}}</h1>
+        </div>
+        `,
+        props: ['from', 'fromCity']
+    }
+
+    var jspang = {
+        template:
+        `
+        <div>
+            <p> Panda from China! </p>
+            <city style="color:green;" from="China" from-city="SiChuan"></city>
+            <p style="color: red;"> Panda from {{here}}, {{province}} </p>
+            <h1>Panda from {{country}}, {{province}} </h1>
+        </div>
+        `,
+        props:['here', 'province', 'country', ],
+        components: {
+            "city": city,
+        }
+    }
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            country: 'China',
+        },
+        components: {
+            "jspang":jspang
+        }
+    })
+
+    </script>
+</body>
+</html>

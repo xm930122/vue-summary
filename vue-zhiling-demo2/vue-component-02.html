@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>component-02案例</title>
+</head>
+<body>
+    <h1>component-2</h1>
+    <hr>
+    <div id="app">
+        <!-- 我们在写属性时经常会加入'-'来进行分词，
+        比如：那这时我们在props里如果写成props:['form-city']是错误的，
+        我们必须用小驼峰式写法props:['formCity']。 -->
+      <panda from-city="sichuan" here="China" :country="message"></panda>
+    </div>
+
+    <script type="text/javascript">
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'Sichuan',
+        },
+        components:{
+            "panda":{
+                template:
+                `
+                <div>
+                <div style="color:red;">Panda from {{ fromCity}} , {{ here }}</div>
+                <div style="color:green;">Panda from {{ country }}</div>
+                </div>
+                `,
+                props:['fromCity','here','country']
+            }
+        }
+
+
+    })
+
+        
+    </script>
+    
+</body>
+</html>

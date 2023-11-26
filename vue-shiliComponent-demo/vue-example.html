@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Early Examples Demo</title>
+</head>
+<body>
+    <h1>Early Examples Demo</h1>
+    <hr>
+    <div id="app">
+        <div>
+        <p>{{message}}</p>
+        <p>{{count}}</p>
+        <button @click="add">add</button>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            count: 1,
+            message: 'Hello Vue!'
+        },
+        methods: {
+            add: function() {
+                this.count += 1;
+                console.log('调用了Add方法')
+            }
+        },
+        updated: function() {
+            $('#app').html('我是jquery!')
+        }
+    })
+
+    // app.add();
+
+    </script>
+</body>
+</html>

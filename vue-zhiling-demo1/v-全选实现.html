@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vue全选实现</title>
+</head>
+<body>
+    <div id="app">
+            <h3>v-model实现全选</h3>
+            <button @click="checkAnti" >反选</button>
+            <button @click="checkAll" >全选</button>
+            <button @click="checkNone" >全不选</button>
+            <div>
+                喜好:
+                <div v-for="item in inputArr">
+                {{item.text}} : <input type="checkbox" v-model="selected" :value="item.id">
+                </div>
+            </div>
+            <p>{{selected}}</p>
+            
+    </div>
+
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue!',
+            inputArr: [
+                { id: '1', text: '足球' },
+                { id: '2', text: '篮球' },
+                { id: '3', text: '羽毛球' },
+                { id: '4', text: '游泳' },
+                { id: '5', text: '跑步' },
+            ],
+            selected:['1', '4']
+        },
+        methods:{
+            checkAnti() {
+                this.inputArr.forEach((item, index)=> {
+                    if (this.selected.indexOf(item.id) !== -1) {
+                        this.selected = this.selected.filter(i => i !== item.id)
+                    } else {
+                        this.selected.push(item.id)
+                    }
+                    
+                })
+            },
+            checkAll() {
+                this.inputArr.forEach(item => {
+                    if (this.selected.indexOf(item.id) === -1) {
+                        this.selected.push(item.id)
+                    }
+                })
+            },
+            checkNone() {
+                this.selected = []
+            }
+        },
+    })
+    </script>   
+</body>
+</html>

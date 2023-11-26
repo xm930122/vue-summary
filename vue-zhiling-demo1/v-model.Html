@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script type="text/javascript" src="./assets/js/vue.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>v-model双向数据绑定</title>
+</head>
+<body>
+    <div id="app">
+        <p>原始文本信息：{{message}}</p>
+        <h3>文本框</h3>
+        <p>v-model: <input type="text" v-model="message"></p>
+        <p>
+            <textarea cols="30" rows="10" v-model="message"></textarea>
+        </p>
+        <p>
+            <h3>多选按钮绑定一个值</h3>
+            <input type="checkbox" id="isTrue" v-model="isTrue">
+            <label for="isTrue">{{isTrue}}</label>
+        </p>
+        <p>
+            <h3>v-model实现全选</h3>
+            <div>
+                <input type="checkbox" v-model="selectAll" id="check-all">
+                <label class="check-all" for="check-all">全选</label>
+              </div>
+              <div v-for="answer in answers">
+                  <input type="checkbox" v-model="selected" :value="answer.no" :id="answer.no">
+                  <label :for="answer.no">{{ answer.name }}</label>
+              </div>
+              <p>{{selected}}</p>
+        </p>
+       <p>
+            <h3>多选绑定一个数组</h3>
+           <div>
+            <input type="checkbox" :checked="webIds.length === webs.length" @click="checkAll" >全选
+           </div>
+           <div v-for="(item, index) in webs" :key="index">
+            <input type="checkbox" :id="item.id" :checked="webIds.indexOf(item.id)>=0" @click="checkedOne(item.id)" >
+            <label :for="item.id">{{item.value}}</label><br/>
+           </div>       
+            <p>{{webIds}}</p>
+       </p>
+       <p>
+           <h3>checkbox多选框</h3>
+            <input type="checkbox" id="JSPang" value="JSPang" v-model="web_Names">
+            <label for="JSPang">JSPang</label><br/>
+            <input type="checkbox" id="Panda" value="Panda" v-model="web_Names">
+            <label for="Panda">Panda</label><br/>
+            <input type="checkbox" id="PanPan" value="PanPan" v-model="web_Names">
+            <label for="PanPan">PanPan</label>
+            <p>{{web_Names}}</p>
+       </p>
+       <p>
+            <h3>单选按钮绑定</h3>
+            <input type="radio" id="one" value="男" v-model="sex">
+            <label for="one">男</label>
+            <input type="radio" id="two" value="女" v-model="sex">
+            <label for="two">女</label>
+            <p>{{sex}}</p>
+       </p>
+    </div>
+
+    <script type="text/javascript">
+    var app = new Vue({
+        el: '#app',
+        data: {
+            message: 'hello Vue!',
+            isTrue: false,
+            webs:[
+                {
+                    id:'1',
+                    value:'JSPang'
+                },
+                {
+                    id:'2',
+                    value:'Panda'
+                },
+                {
+                    id:'3',
+                    value:'PanPan'
+                },
+                {
+                    id:'4',
+                    value:'JsPang'
+                },
+            ],
+            webIds:['1', '2', '4'],
+            web_Names: [],
+            sex: '女',
+            isCheckedAll: false,
+            answers: [ 
+            { "no": 11, "name": "A" },
+            { "no": 12, "name": "B" }, 
+            { "no": 13, "name": "C" }, 
+            { "no": 14, "name": "D" },
+            { "no": 15, "name": "E" }
+            ],
+            selected: []
+        },
+        methods:{
+            checkedOne (id) {
+                let idIndex = this.webIds.indexOf(id)
+                if (idIndex >= 0) {
+                // 如果已经包含了该id, 则去除(单选按钮由选中变为非选中状态)
+                this.webIds.splice(idIndex, 1)
+                } else {
+                // 选中该checkbox
+                this.webIds.push(id)
+                if(this.webIds.length == this.webs.length){ 
+                    this.isCheckedAll=true; 
+                } else {
+                    this.isCheckedAll=false; 
+                }
+                }
+            },
+            checkAll() {
+                this.isCheckedAll = !this.isCheckedAll
+                if (this.isCheckedAll) {
+                    // 全选时
+                    this.webIds = []
+                    this.webs.forEach(function (item) {
+                    this.webIds.push(item.id)
+                    }, this)
+                } else {
+                    this.webIds = []
+                }
+
+            } 
+        },
+        computed: {
+            selectAll: {
+                get: function() {
+                    return this.answers.length === this.selected.length;
+                },
+                set: function (value) {
+                    var selected = [];
+                    if (value) {
+                        this.answers.forEach(function (user) {
+                            selected.push(user.no);
+                        });
+                    }
+                    this.selected = selected;
+                }
+            }
+        }
+    })
+    </script>
+
+    <style>
+        .check-all {
+            display: inline-block;
+            width: 100px;
+            height: 36px; 
+            background: white;
+            margin: 2px;
+            }
+    </style>
+    
+</body>
+</html>
