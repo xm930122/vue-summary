@@ -2,7 +2,6 @@
 
 > A Vue.js project test111
 > master分支代码改变
-> A Vue.js project test rebase
 > A Vue.js project 1111
 > 测试66666
 
