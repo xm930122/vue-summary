@@ -1,6 +1,6 @@
 # vuex-demo
 
-> A Vue.js project 1111
+> A Vue.js project test rebase
 
 ## Build Setup
 
