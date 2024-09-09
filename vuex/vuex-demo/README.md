@@ -1,7 +1,6 @@
 # vuex-demo
 
 > A Vue.js project test111
-> master分支代码改变
 
 ## Build Setup
 
