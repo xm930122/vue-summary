@@ -1,10 +1,6 @@
 # vuex-demo
 
-> A Vue.js project test111
-> master分支代码改变
-> A Vue.js project 1111
-> 测试66666
-> master测试
+> A Vue.js project
 
 ## Build Setup
 
