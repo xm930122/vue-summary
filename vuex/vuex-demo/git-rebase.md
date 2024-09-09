@@ -8,4 +8,3 @@
 > git pull
 > git merge 本地分支
 > git push
->
