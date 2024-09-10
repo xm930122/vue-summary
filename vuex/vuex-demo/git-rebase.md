@@ -1,5 +1,6 @@
 # git rebase
 
+> 说明
 > git checkout 本地分支
 > git pull
 > git rebase 目的分支
@@ -7,4 +8,4 @@
 > git checkout master
 > git pull
 > git merge 本地分支
-> git push 2222
+> git push sskk
