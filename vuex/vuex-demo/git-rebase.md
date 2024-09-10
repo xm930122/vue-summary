@@ -1,5 +1,6 @@
 # git rebase
 
+> 说明
 > git checkout 本地分支
 > git pull
 > git rebase 目的分支
