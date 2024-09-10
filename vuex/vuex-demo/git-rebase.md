@@ -1,6 +1,6 @@
 # git rebase
 
-> 说明4442
+> 说明8888888
 > git checkout 本地分支
 > git pull
 > git rebase 目的分支
